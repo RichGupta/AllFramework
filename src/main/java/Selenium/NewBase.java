@@ -35,5 +35,6 @@ public class NewBase {
         }
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
+        
     }
 }

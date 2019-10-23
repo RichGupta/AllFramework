@@ -25,9 +25,9 @@ public class DriverHandler implements ILogger {
 
     public static void closeDriver() {
         while (webDriver.get()!=null){
-            log.info("Closing browser");
             webDriver.get().quit();
             webDriver.remove();
+            log.info("Closed browser");
         }
     }
 

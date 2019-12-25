@@ -1,5 +1,7 @@
 package UI.Pages;
 
+import Selenium.LandingPage;
+import Selenium.LoginPage;
 import UIHelper.DriverHandler;
 import Utility.ExtentReport.ExtentLogger;
 import Utility.ILogger;
@@ -23,7 +25,8 @@ public class AbstractBasePageWeb {
     }
 
     public static TestPage testPage;
-
+    public static LandingPage landingPage;
+    public static LoginPage loginPage;
     /**
      * Returns the object of the specified page/pages
      * User needs to pass exact page name

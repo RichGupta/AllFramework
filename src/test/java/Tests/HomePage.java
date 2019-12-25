@@ -3,35 +3,37 @@ package Tests;
 import Selenium.LandingPage;
 import Selenium.LoginPage;
 import Selenium.NewBase;
+import UI.Pages.AbstractBasePageWeb;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.sql.Driver;
 
-public class HomePage extends NewBase {
+public class HomePage extends AbstractBasePageWeb {
 
-    @Test
+    @BeforeMethod
+    public void setup(){
+        openBrowser();
+        returnPages("LandingPage","LoginPage");
+    }
+
+        @Test
     public void basePageNavigation()
 
     {
-
-        try {
-            driver=initializeDriver();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        driver.get("https://www.google.in");
-            LandingPage la = new LandingPage(driver);
-                la.getLogin().click();
-        LoginPage lp = new LoginPage(driver);
-
-                lp.getEmail().sendKeys("krunal.bhadra@gmail.com");
-                lp.getContinueButton().click();
-                lp.getPassword().sendKeys("Dhani@8240");
-                lp.getLogin().click();
+               goToURL("https://amazon.in");
+                landingPage.clickSignInButton();
+                loginPage.loginMethod();
 
 
     }
 
+        @AfterMethod
+    public void close()
+        {
+            driver.close();
+        }
 }

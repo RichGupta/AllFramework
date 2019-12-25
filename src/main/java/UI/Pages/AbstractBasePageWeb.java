@@ -1,10 +1,7 @@
 package UI.Pages;
 
-import Selenium.LandingPage;
-import Selenium.LoginPage;
 import UIHelper.DriverHandler;
 import Utility.ExtentReport.ExtentLogger;
-import Utility.ILogger;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import org.openqa.selenium.By;

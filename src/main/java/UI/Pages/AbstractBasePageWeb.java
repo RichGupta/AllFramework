@@ -1,6 +1,7 @@
 package UI.Pages;
 
 import UIHelper.DriverHandler;
+import Utility.ExtentReport.ExtentLogger;
 import Utility.ILogger;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
@@ -12,9 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
 
-public class AbstractBasePageWeb implements ILogger {
+public class AbstractBasePageWeb {
 
     public WebDriver driver;
+    public static ExtentLogger log = ExtentLogger.getLogger();
 
     public AbstractBasePageWeb(){
         this.driver = DriverHandler.getWebDriver().get();
@@ -39,7 +41,7 @@ public class AbstractBasePageWeb implements ILogger {
                                 + "= new "
                                 + String.valueOf(field).split(" ")[2] + "();");
                         log.info("created object for:- \n"+ String.valueOf(field).split(" ")[3]+ " = new "+ String.valueOf(field).split(" ")[2] + "();");
-//						shell.evaluate(String.valueOf(field).split(" ")[3]+".driver = new com.akrivia.utility.DriverHandler().getDriver();");
+						shell.evaluate(String.valueOf(field).split(" ")[3]+".driver = new com.akrivia.utility.DriverHandler().getDriver();");
                     }
                 } catch (Exception e) {
 //					Log.info(field.getType().getName()+" :: Error - "+e.getMessage());
@@ -49,11 +51,14 @@ public class AbstractBasePageWeb implements ILogger {
         }
     }
 
-    public void openBrowser(String URL){
-        log.info("Opening driver");
-        driver = DriverHandler.getDriver("chrome");
+    public void goToURL(String URL){
+        log.info("Opened Chrome");
         driver.manage().window().maximize();
         driver.get(URL);
+    }
+
+    public void openBrowser(){
+        driver = DriverHandler.getDriver("chrome");
     }
 
     /**

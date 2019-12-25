@@ -9,12 +9,13 @@ public class sampleTest extends AbstractBasePageWeb implements ILogger {
 
     @BeforeMethod
     public void setup(){
-        openBrowser("https://www.google.com");
+        openBrowser();
         returnPages("TestPage");
     }
 
     @Test
     public void testOne(){
+        goToURL("https://www.google.com");
         testPage.searchItem("facebook");
         testPage.verifySearch("Facebook, Inc.");
     }

@@ -16,7 +16,7 @@ public class HomePage extends AbstractBasePageWeb {
 
     @BeforeMethod
     public void setup(){
-        openBrowser();
+        openBrowser("chrome","win");
         returnPages("LandingPage","LoginPage");
     }
 

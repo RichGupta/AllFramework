@@ -11,7 +11,6 @@ target
 *.com
 *.class
 *.dll
-*.exe
 *.o
 *.so
 
@@ -19,6 +18,8 @@ target
 .idea/workspace.xml
 .idea/misc.xml
 .idea/vcs.xml
+
+*.iml
 
 ###Libre office
 *.~lock*

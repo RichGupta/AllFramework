@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public class AppiumHandler {
+public class AppiumHandler implements ILogger{
 
     private static AppiumDriverLocalService appiumDriverLocalService;
     private static AppiumServiceBuilder appiumServiceBuilder;
@@ -58,7 +58,7 @@ public class AppiumHandler {
             if(response.getStatusCode()==200)
                 isServerRunning = true;
         } catch (Exception e){
-//            System.out.println(e.getMessage());
+            log.error(e.getMessage());
         }
         return isServerRunning;
     }
@@ -80,11 +80,11 @@ public class AppiumHandler {
         if(!appiumServer.checkIfServerIsRunning(url)) {
             appiumServer.startAppiumServer();
             if(appiumServer.checkIfServerIsRunning(url)){
-                System.out.println("Appium Server is running on Port - " + port);
+                log.info("Appium Server is running on Port - " + port);
             }
             appiumServer.stopAppiumServer();
         } else {
-            System.out.println("Appium Server already running on Port - " + port);
+            log.info("Appium Server already running on Port - " + port);
         }
     }
 }

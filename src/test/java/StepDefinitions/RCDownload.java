@@ -1,20 +1,15 @@
 package StepDefinitions;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import UI.Pages.AbstractBasePage;
-import cucumber.api.PendingException;
+
+import UI.Pages.AbstractBasePageWeb;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.remote.MobileCapabilityType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-public class RCDownload  extends AbstractBasePage {
+public class RCDownload  extends AbstractBasePageWeb {
     AppiumDriver<MobileElement> driver;
 
     @Given("Connect with mobile and launch chrome app")
@@ -33,7 +28,7 @@ public class RCDownload  extends AbstractBasePage {
 ////        capabilities.setCapability("appActivity","com.android.calculator2.Calculator");
 ////        capabilities.setCapability("appActivity","com.google.android.apps.chrome.Main");
 ////        capabilities.setCapability("appActivity","com.sec.android.app.popupcalculator.Calculator");
-////        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver.exe");
+////        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/win_32.exe");
 //        driver = new AppiumDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
         System.out.println("Executing given statement");
     }

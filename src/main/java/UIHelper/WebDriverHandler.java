@@ -16,7 +16,7 @@ public class WebDriverHandler implements ILogger {
     static DesiredCapabilities capabilities = null;
     static protected WebDriver driver;
 
-    public synchronized WebDriver initialiseDriver(String browser) {
+    public synchronized WebDriver initialiseDriver(String browser, String os) {
         switch (browser.toLowerCase()) {
             case "chrome":
                 capabilities = DesiredCapabilities.chrome();
@@ -25,9 +25,16 @@ public class WebDriverHandler implements ILogger {
                 HashMap<String, Object> chromeOptionsMap = new HashMap<String, Object>();
                 capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptionsMap);
                 capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-                ChromeDriverService chrome = new ChromeDriverService.Builder()
-                        .usingDriverExecutable(new File(String.valueOf(ChromeDriverUtil.getChromeExecutablePath())))
-                        .usingAnyFreePort().build();
+                ChromeDriverService chrome;
+                if(os.equalsIgnoreCase("win")){
+                    chrome = new ChromeDriverService.Builder()
+                            .usingDriverExecutable(new File("C:\\Users\\Krunal\\Downloads\\chromedriver_win32//chromedriver.exe"))
+                            .usingAnyFreePort().build();
+                } else {
+                    chrome = new ChromeDriverService.Builder()
+                            .usingDriverExecutable(new File(String.valueOf(ChromeDriverUtil.getChromeExecutablePath())))
+                            .usingAnyFreePort().build();
+                }
                 ChromeOptions options = new ChromeOptions();
                 options.setExperimentalOption("prefs", chromePrefs);
                 options.addArguments("--test-type");

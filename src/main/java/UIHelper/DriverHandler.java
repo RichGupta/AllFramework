@@ -31,15 +31,15 @@ public class DriverHandler implements ILogger {
         }
     }
 
-    public static WebDriver getDriver(String browser){
+    public static WebDriver getDriver(String browser, String os){
         if(getWebDriver().get()==null){
-            setWebDriver(webDriverHandler.initialiseDriver(browser));
+            setWebDriver(webDriverHandler.initialiseDriver(browser, os));
         }
         driver = getWebDriver().get();
         return driver;
     }
 
-    public static WebDriver getDriver(String OS, String browser){
+    public static WebDriver getDriverMob(String OS, String browser){
         if(getWebDriver().get()==null){
             try {
                 setWebDriver(mobileDriverHandler.initialiseDriver(OS,browser));

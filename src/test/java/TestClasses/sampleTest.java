@@ -9,7 +9,7 @@ public class sampleTest extends AbstractBasePageWeb implements ILogger {
 
     @BeforeMethod
     public void setup(){
-        openBrowser();
+        openBrowser("chrome","as");
         returnPages("TestPage");
     }
 

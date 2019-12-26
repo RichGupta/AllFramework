@@ -1,4 +1,4 @@
-package Selenium;
+package UI.Pages;
 
 import UI.Pages.AbstractBasePageWeb;
 import org.openqa.selenium.By;

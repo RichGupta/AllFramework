@@ -1,13 +1,11 @@
 package UI.Pages;
 
-import Selenium.LandingPage;
-import Selenium.LoginPage;
 import UIHelper.DriverHandler;
 import Utility.ExtentReport.ExtentLogger;
-import Utility.ILogger;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -126,4 +124,15 @@ public class AbstractBasePageWeb {
         log.info("clicking on element " + element);
         element.click();
     }
+    public String getText(By locator) {
+        WebElement element = findByWait(locator);
+        String abc = element.getText();
+        return abc;
+    }
+    public void scrollDowns(String a, String b){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript(a,b);
+    }
+
+
 }

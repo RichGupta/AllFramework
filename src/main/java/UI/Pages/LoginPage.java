@@ -1,4 +1,4 @@
-package Selenium;
+package UI.Pages;
 
 import UI.Pages.AbstractBasePageWeb;
 import org.openqa.selenium.By;
@@ -19,7 +19,7 @@ public By login = By.xpath("//*[@id=\"signInSubmit\"]");
 public void loginMethod(){
     enterText(email,"krunal.bhadra@gmail.com");
     clickElement(continuebutton);
-    enterText(password,"Dhani8240");
+    enterText(password,"Dhani@8240");
     clickElement(login);
 }
 

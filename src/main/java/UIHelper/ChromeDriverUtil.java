@@ -42,9 +42,9 @@ public class ChromeDriverUtil implements ILogger {
                                         : "mac") }) });
         String arch = osArch.indexOf("64") != -1 ? "64" : "32";
         File file = new File(path.toString() + arch);
-        if (osArch.contains("64") && !file.exists()) {
-            arch = "32";
-        }
+//        if (osArch.contains("64") && !file.exists()) {
+//            arch = "32";
+//        }
         file = new File(path.toString() + arch + (osName.contains("win") ? ".exe" : ""));
         String chromeDriverPath = file.exists() ? file.getAbsolutePath() : null;
         return chromeDriverPath == null ? null : Paths.get(chromeDriverPath, new String[0]);

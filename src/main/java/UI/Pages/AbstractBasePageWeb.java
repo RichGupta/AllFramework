@@ -57,8 +57,8 @@ public class AbstractBasePageWeb {
         driver.get(URL);
     }
 
-    public void openBrowser(String browser, String os){
-        driver = DriverHandler.getDriver(browser, os);
+    public void openBrowser(String browser){
+        driver = DriverHandler.getDriver(browser);
     }
 
     /**

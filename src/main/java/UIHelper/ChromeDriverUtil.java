@@ -18,7 +18,7 @@ import Utility.PropertyReader;
 public class ChromeDriverUtil implements ILogger {
 
     private static final String DEFAULT_CHROME_DRIVER_DIR_PATH = Paths.get("src",
-            new String[] { "test", "resources", "chromedriver" }).toString();
+            new String[] { "test", "resources", "chromeDriver" }).toString();
     private static Properties chromeDriverBrowserMapping;
     private static final String DRIVER_BROWSER_COMPATIBILITY_FILE = Paths.get("chromeDriver",
             new String[] { "chromeDriver_browser_compatibility.properties" }).toString();
@@ -31,7 +31,7 @@ public class ChromeDriverUtil implements ILogger {
     public static Path getChromeExecutablePath() {
         String osArch = System.getProperty("os.arch").toLowerCase();
         String osName = System.getProperty("os.name").toLowerCase();
-        log.info(Paths.get("src", new String[] { "test", "resources", "chromedriver" }).toString());
+        log.info(DEFAULT_CHROME_DRIVER_DIR_PATH);
         log.info(getSupportedChromeDriverVersion());
         Path path = Paths.get(
                 DEFAULT_CHROME_DRIVER_DIR_PATH,

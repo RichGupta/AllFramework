@@ -31,9 +31,9 @@ public class DriverHandler implements ILogger {
         }
     }
 
-    public static WebDriver getDriver(String browser, String os){
+    public static WebDriver getDriver(String browser){
         if(getWebDriver().get()==null){
-            setWebDriver(webDriverHandler.initialiseDriver(browser, os));
+            setWebDriver(webDriverHandler.initialiseDriver(browser));
         }
         driver = getWebDriver().get();
         return driver;

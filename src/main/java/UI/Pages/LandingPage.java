@@ -12,21 +12,21 @@ public class LandingPage extends AbstractBasePageWeb {
 
 
 
-   public By signin = By.xpath("//*[@id=\"nav-signin-tooltip\"]/a/span");
-   public void clickSignInButton(){
-    clickElement(signin);}
+    public By signin = By.xpath("//*[@id=\"nav-signin-tooltip\"]/a/span");
+    public void clickSignInButton(){
+        clickElement(signin);}
     public By searchtextbox = By.xpath("//*[@id=\"twotabsearchtextbox\"]");
     public void miTV(){
         enterText(searchtextbox,"Mi TV"); }
     public By searchbuttons = By.xpath("/html/body/div[1]/header/div/div[1]/div[3]/div/form/div[2]/div/input");
     public void searchSubmit(){
         clickElement(searchbuttons);}
-        public By han = By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[1]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span");
-               // By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[3]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span");
+    public By han = By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[1]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span");
+    // By.xpath("/html/body/div[1]/div[1]/div[1]/div[2]/div/span[4]/div[1]/div[3]/div/span/div/div/div[2]/div[2]/div/div[1]/div/div/div[1]/h2/a/span");
     public void verifyText() {
-         getText(han);
-         Assert.assertEquals(getText(han), "Mi LED TV 4C PRO 80 cm (32) HD Ready Android TV (Black)");
-        }
+        getText(han);
+        Assert.assertEquals(getText(han), "Mi LED TV 4C PRO 80 cm (32) HD Ready Android TV (Black)");
+    }
     public void searchSketchers(){
         enterText(searchtextbox,"Sketchers shoes men");
         clickElement(searchbuttons);
@@ -34,15 +34,15 @@ public class LandingPage extends AbstractBasePageWeb {
 
     public By secondlink = By.xpath("//*[@id=\"search\"]/div[1]/div[2]/div/span[8]/div/span/div/div/ul/li[3]/a");
     public void clickSecondbuttonlink(){
-    clickElement(secondlink);
+        clickElement(secondlink);
     }
     public By homePage = By.xpath("//*[@id=\"nav-logo\"]/a[1]");
-        public void goHomePage(){
+    public void goHomePage(){
         clickElement(homePage);
-        }
-        public void searchTrimmer(){
-         enterText(searchtextbox,"trimmer");
-         clickElement(searchbuttons);}
+    }
+    public void searchTrimmer(){
+        enterText(searchtextbox,"trimmer");
+        clickElement(searchbuttons);}
 
     public By philipCheckbox = By.xpath("/html/body/div[1]/div[1]/div[1]/div[1]/div/div[3]/span/div/div[5]/ul/li[1]/span/a/div/label/i");
 

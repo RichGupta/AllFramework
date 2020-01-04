@@ -58,8 +58,8 @@ public class AbstractBasePageWeb {
         driver.get(URL);
     }
 
-    public void openBrowser(String browser, String os){
-        driver = DriverHandler.getDriver(browser, os);
+    public void openBrowser(String browser){
+        driver = DriverHandler.getDriver(browser);
     }
 
     /**
@@ -82,7 +82,7 @@ public class AbstractBasePageWeb {
      */
     public WebElement findByWait(By locatn) {
         WebElement element = null;
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
             WebDriverWait wait = new WebDriverWait(driver, 60);
             wait.until(ExpectedConditions.presenceOfElementLocated(locatn));

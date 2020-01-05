@@ -105,17 +105,18 @@ public class ChromeDriverUtil implements ILogger {
         if (osName.contains("linux")) {
             command = "google-chrome --product-version";
         } else if (osName.contains("mac")) {
-            command = "";
+            command = "'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --version";
         } else if (osName.contains("win")) {
             command = "wmic datafile where name=\"C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\" get Version /value";
         }
-        String response = CommandLineExecutor.exec(command);
+        String response = CommandLineExecutor.exec(command).trim();
         if(response != null && !response.trim().isEmpty()){
             if(response.contains("=")){
                 response = response.substring(response.indexOf("=")+1);
+            } else if(response.contains("Chrome")) {
+                response = response.substring(response.lastIndexOf(" "));
             }
-            String version = response.trim();
-            return version.substring(0,version.indexOf("."));
+            return response.substring(0,response.indexOf(".")).trim();
         }
         else {
             return null;

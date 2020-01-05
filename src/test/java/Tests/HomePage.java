@@ -40,8 +40,23 @@ public class HomePage extends AbstractBasePageWeb {
                 Thread.sleep(5000);
                 landingPage.searchTrimmer();
                 scrollDowns("0","1000");
-               // landingPage.selectPhilipCheckbox();
+                landingPage.selectPhilipCheckbox();
     }
+    @Test (priority = 3)
+    public void Case4() throws InterruptedException {
+                landingPage.goHomePage();
+                landingPage.searchBenJeans();
+                Thread.sleep(5000);
+                scrollDowns("10","700");
+                landingPage.clickBenJeans();
+                productDetailPage.clickDropdown();
+                productDetailPage.setSelectdropdown();
+                productDetailPage.clickBuyButton();
+                paymentSelectionPage.enterCVV();
+                paymentSelectionPage.clickContinue();
+                reviewPage.placeorderButtonEnabled();
+    }
+    
 
     //@AfterMethod
    // public void close()

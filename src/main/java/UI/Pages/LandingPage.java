@@ -52,4 +52,17 @@ public class LandingPage extends AbstractBasePageWeb {
         clickElement(philipCheckbox);
         getText(philipPageDisplayed);
         Assert.assertEquals(getText(philipPageDisplayed),"Philips QT4001/15 cordless rechargeable Beard Trimmer - 10 length settings");
-    }}
+    }
+    public By clickBenMartinJeans = By.xpath("//*[@id=\"search\"]/div[1]/div[2]/div/span[4]/div[1]/div[3]/div/span/div/div/div/div/div[4]/div/div/a");
+
+    public void searchBenJeans(){
+        enterText(searchtextbox,"Ben Martin Jeans for men");
+        clickElement(searchbuttons);
+
+    }
+    public void clickBenJeans(){
+        clickElement(clickBenMartinJeans);
+    }
+
+
+}

@@ -9,6 +9,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +26,9 @@ public class AbstractBasePageWeb {
     public static TestPage testPage;
     public static LandingPage landingPage;
     public static LoginPage loginPage;
+    public static ProductDetailPage productDetailPage;
+    public static PaymentSelectionPage paymentSelectionPage;
+    public static ReviewPage reviewPage;
     /**
      * Returns the object of the specified page/pages
      * User needs to pass exact page name
@@ -133,6 +137,12 @@ public class AbstractBasePageWeb {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript(a,b);
     }
-
+    public void selectDropdown(String c, String d){
+        Select select = new Select(driver.findElement(By.name(c)));
+        select.selectByVisibleText(d);
+    }
+    public void isEnabled (WebElement element){
+        element.isEnabled();
+    }
 
 }

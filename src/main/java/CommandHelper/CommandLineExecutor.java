@@ -18,7 +18,7 @@ public class CommandLineExecutor implements ILogger {
      * @param args
      *            {@link String}[] containing arguments that are to be passed to
      *            executable
-     * @return {@link CommandLineResponse}
+     * @return {String}
      */
     public static String execFile(final String file, final String... args) {
         String response = null;
@@ -32,7 +32,7 @@ public class CommandLineExecutor implements ILogger {
      * Run system commands and get response back.
      * @param command
      *            {@link String}
-     * @return {@link CommandLineResponse}
+     * @return {@link String response of Command line}
      */
     public static String exec(final String command) {
         if (command == null || command.trim().isEmpty()) {
@@ -42,9 +42,7 @@ public class CommandLineExecutor implements ILogger {
         String[] commandStr = new String[3];
         if(osName.contains("win")){
             commandStr = new String[]{"cmd", "/c", command.trim()};
-        } else if(osName.contains("mac")){
-
-        } else if(osName.contains("linux")){
+        }else if(osName.contains("linux") || osName.contains("mac")){
             commandStr = new String[]{ "sh", "-c", command.trim() };
         }
         return execCommand(commandStr);
@@ -61,7 +59,7 @@ public class CommandLineExecutor implements ILogger {
         try {
             if(osName.contains("win")){
                 process = Runtime.getRuntime().exec(String.join(" ",command));
-            } else if(osName.contains("linux")){
+            } else if(osName.contains("linux") || osName.contains("mac")){
                 builder = new ProcessBuilder(command);
                 process = builder.start();
             }

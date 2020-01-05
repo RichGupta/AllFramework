@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.Map;
 import java.util.Map.Entry;
 import CommandHelper.CommandLineExecutor;
-import CommandHelper.CommandLineResponse;
 import Utility.ILogger;
 import Utility.PropertyReader;
 
@@ -32,7 +31,6 @@ public class ChromeDriverUtil implements ILogger {
         String osArch = System.getProperty("os.arch").toLowerCase();
         String osName = System.getProperty("os.name").toLowerCase();
         log.info(DEFAULT_CHROME_DRIVER_DIR_PATH);
-        log.info(getSupportedChromeDriverVersion());
         Path path = Paths.get(
                 DEFAULT_CHROME_DRIVER_DIR_PATH,
                 new String[] {
@@ -41,10 +39,15 @@ public class ChromeDriverUtil implements ILogger {
                                 new Object[] { osName.contains("linux") ? "linux" : (osName.contains("win") ? "win"
                                         : "mac") }) });
         String arch = osArch.indexOf("64") != -1 ? "64" : "32";
-        File file = new File(path.toString() + arch);
-//        if (osArch.contains("64") && !file.exists()) {
-//            arch = "32";
-//        }
+        File file = null;
+        if(osName.contains("win")){
+            file = new File(path.toString() + arch + ".exe");
+        } else {
+            file = new File(path.toString() + arch);
+        }
+        if (osArch.contains("64") && !file.exists()) {
+            arch = "32";
+        }
         file = new File(path.toString() + arch + (osName.contains("win") ? ".exe" : ""));
         String chromeDriverPath = file.exists() ? file.getAbsolutePath() : null;
         return chromeDriverPath == null ? null : Paths.get(chromeDriverPath, new String[0]);
@@ -66,6 +69,7 @@ public class ChromeDriverUtil implements ILogger {
                 return entry.getKey();
             }
         }
+        log.info("required Chrome driver version : " + chromeBrowserVersion);
         return null;
     }
 
@@ -103,13 +107,17 @@ public class ChromeDriverUtil implements ILogger {
         } else if (osName.contains("mac")) {
             command = "";
         } else if (osName.contains("win")) {
-            command = "";
+            command = "wmic datafile where name=\"C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe\" get Version /value";
         }
-        CommandLineResponse response = CommandLineExecutor.exec(command);
-        if (response != null && response.getStdOut() != null && !response.getStdOut().trim().isEmpty()) {
-            String stdOut = response.getStdOut().trim();
-            return stdOut.substring(0, stdOut.indexOf("."));
-        } else {
+        String response = CommandLineExecutor.exec(command);
+        if(response != null && !response.trim().isEmpty()){
+            if(response.contains("=")){
+                response = response.substring(response.indexOf("=")+1);
+            }
+            String version = response.trim();
+            return version.substring(0,version.indexOf("."));
+        }
+        else {
             return null;
         }
     }

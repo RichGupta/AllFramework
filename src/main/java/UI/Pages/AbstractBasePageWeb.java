@@ -5,6 +5,7 @@ import Utility.ExtentReport.ExtentLogger;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -122,5 +123,31 @@ public class AbstractBasePageWeb {
         WebElement element = findByWait(loc);
         log.info("clicking on element " + element);
         element.click();
+    }
+
+    /**
+     * Scrolls to certain element using By locator
+     * @param locator - By locator
+     */
+
+    public void scrollToElement(By locator) {
+        WebElement element = driver.findElement(locator);
+        int i = 0;
+        while (true) {
+            if (driver.findElement(locator).isDisplayed())
+                break;
+            else if (i < 5) {
+                log.info("searching element by scroll up");
+                ((JavascriptExecutor) driver).executeScript("scroll(0,100)");
+                i++;
+            } else if (i < 10) {
+                log.info("searching element by scroll down");
+                ((JavascriptExecutor) driver).executeScript("scroll(0,100)");
+                i++;
+            } else {
+                log.info("not able to find element by scrolling up and down");
+                break;
+            }
+        }
     }
 }
